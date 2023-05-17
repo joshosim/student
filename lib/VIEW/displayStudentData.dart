@@ -1,14 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:student/VIEW/iconicon.dart';
+import 'package:student/VIEW/WIDGETS/iconicon.dart';
 
 class DisplayStudentData extends StatelessWidget {
   final String name;
   final String department;
   final String email;
   final String level;
-  final String pickedImage;
+  //final String imageUrl;
 
   const DisplayStudentData({
     Key? key,
@@ -16,7 +15,7 @@ class DisplayStudentData extends StatelessWidget {
     required this.department,
     required this.email,
     required this.level,
-    required this.pickedImage,
+    //required this.imageUrl,
   }) : super(key: key);
 
   @override
@@ -25,9 +24,9 @@ class DisplayStudentData extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            pickedImage != null
+           /* imageUrl != null
                 ? Image.file(
-                    pickedImage! as File,
+                    imageUrl! as File,
                     height: 400,
                   )
         //if the file is not empty it will show the image else it will show the container below
@@ -41,8 +40,9 @@ class DisplayStudentData extends StatelessWidget {
                             color: Colors.blue),
                       ),
                     ),
-                  ),
-            const SizedBox(height: 400),
+                  ),*/
+            Image.asset("kk/bike.jpg",fit: BoxFit.cover,height: 300,),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(28.0),
               child: Row(

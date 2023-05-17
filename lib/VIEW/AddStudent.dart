@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:student/MODEL/Student.dart';
 import 'package:student/VIEW/HomePage.dart';
+import 'package:student/VIEW/WIDGETS/textfield.dart';
 
 
 class AddStudentPage extends StatefulWidget {
@@ -13,25 +14,27 @@ class AddStudentPage extends StatefulWidget {
 }
 
 class _AddStudentPageState extends State<AddStudentPage> {
+  late TextEditingController txtVal;
 
-  late String name, dept, email, imageUrl, level;
+  late String name, dept, email, /*imageUrl,*/ level;
   void _doTask(){
-    Student newStudent = Student(name, dept, email, imageUrl, level);
-    newStudent.addStudent(name, dept, email, imageUrl, level);
+    Student newStudent = Student(name, dept, email, /*imageUrl,*/ level);
+    newStudent.addStudent(name, dept, email, /*imageUrl,*/ level);
 
   }
 
-  final picker = ImagePicker();
-  File? _pickedImage;
-
-  Future<void> pickImageFromGallery() async {
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedImage != null) {
-        _pickedImage = File(0 as List<Object>,pickedImage.path);
-      }
-    });
-  }
+  // final picker = ImagePicker();
+  // File? _pickedImage;
+  //
+  // Future<void> pickImageFromGallery() async {
+  //   final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     if (pickedImage != null) {
+  //       _pickedImage = File(0 as List<Object>,pickedImage.path);
+  //       imageUrl = _pickedImage as String;
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,48 +47,21 @@ class _AddStudentPageState extends State<AddStudentPage> {
 
             Column(
               children: [
-                TextField(
-                  decoration: InputDecoration(
-                    label: Text('Student Name:'),
-                    icon: Icon(Icons.person),
-                  ),
-                  onChanged: (val){
-                    name = val;
-                  },
-                ),
+                MiniTextField(name: name, labelName: 'Student Name:', icon: Icons.person,textValue: txtVal,),
                 SizedBox(height: 10,),
-                TextField(
-                  decoration: InputDecoration(
-                      label: Text('Student Department:'),
-                      icon: Icon(Icons.apartment_rounded)
-                  ),
-                  onChanged: (val){
-                    dept = val;
-                  },
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    label: Text('Student Email:'),
-                    icon: Icon(Icons.email),
-                  ),
-                  onChanged: (val){
-                    email = val;
-                  },
-                ),
-
-                TextField(
-                  decoration: InputDecoration(
-                    label: Text('Student Level:'),
-                    icon: Icon(Icons.auto_graph),
-                  ),
-                  onChanged: (val){
-                    level = val;
-                  },
-                ),
+                MiniTextField(name: dept, labelName: 'Student Department:', 
+                  icon: Icons.apartment_rounded,textValue: txtVal,),
+                MiniTextField(name: email, labelName: 'Student Email:', icon: Icons.email,textValue: txtVal,),
+                MiniTextField(name: level, labelName: 'Student Level:', icon: Icons.auto_graph,textValue: txtVal,),
+                SizedBox(height: 10,),
                 //Image Picker for picking our image
                 ElevatedButton(
-                  onPressed: pickImageFromGallery,
+                  onPressed: null,//pickImageFromGallery,
                   child: Text('Student Image'),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(15),
+                    backgroundColor: Colors.blue
+                  ),
                 ),
               ],
             ),

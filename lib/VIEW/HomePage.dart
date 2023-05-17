@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 department: students[index].department,
                 email: students[index].email,
                 level: students[index].level,
-                pickedImage: students[index].imageUrl,
+                //imageUrl: students[index].imageUrl,
 
               )));
             },
